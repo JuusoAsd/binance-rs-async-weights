@@ -12,7 +12,7 @@ repository = "https://github.com/Igosuki/binance-rs-async"
 readme = "README.md"
 
 [lib]
-name = "binance"
+name = "binance_api_weights"
 path = "src/lib.rs"
 
 [features]
