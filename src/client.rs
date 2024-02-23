@@ -2,6 +2,7 @@ use std::time::Duration;
 
 use boolinator::Boolinator;
 use hex::encode as hex_encode;
+use log::info;
 use reqwest::header::{HeaderMap, HeaderName, HeaderValue, CONTENT_TYPE, USER_AGENT};
 use reqwest::Response;
 use reqwest::StatusCode;
@@ -204,6 +205,7 @@ impl Client {
     }
 
     async fn handler<T: de::DeserializeOwned>(&self, response: Response) -> Result<T> {
+        info!("{:?}", response.headers());
         match response.status() {
             StatusCode::OK => Ok(response.json().await?),
             StatusCode::INTERNAL_SERVER_ERROR => Err(Error::InternalServerError),
