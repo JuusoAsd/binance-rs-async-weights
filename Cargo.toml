@@ -41,6 +41,9 @@ lazy_static = "1.4"
 tokio-tungstenite = "0.21"
 tokio = { version = "1.36", features = ["full"] }
 boolinator = "2.4"
+log = "0.4"
+redis = { version = "0.24.0", features = ["tokio-comp"] }
+
 
 [dev-dependencies]
 csv = "1.3"
