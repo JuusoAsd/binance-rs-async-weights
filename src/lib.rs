@@ -71,24 +71,22 @@ extern crate serde_qs as qs;
 pub use util::bool_to_string;
 pub use util::bool_to_string_some;
 
+mod account;
+mod api;
 mod client;
-pub mod errors;
-pub mod util;
+mod config;
+mod errors;
+mod futures;
+mod general;
+mod margin;
+mod market;
+mod rest_model;
+mod savings;
+mod userstream;
+mod util;
+#[cfg(feature = "wallet")]
+mod wallet;
+mod websockets;
+mod ws_model;
 
-pub mod account;
-pub mod api;
-pub mod config;
-#[cfg(feature = "futures_api")]
-pub mod futures;
-pub mod general;
-#[cfg(feature = "margin_api")]
-pub mod margin;
-pub mod market;
-pub mod rest_model;
-#[cfg(feature = "savings_api")]
-pub mod savings;
-pub mod userstream;
-#[cfg(feature = "wallet_api")]
-pub mod wallet;
-pub mod websockets;
-pub mod ws_model;
+pub mod api_weights;
