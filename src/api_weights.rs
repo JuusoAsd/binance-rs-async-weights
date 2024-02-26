@@ -98,9 +98,12 @@ impl CustomLogHandler {
         };
 
         let old_weight = *current_usage.lock().expect("Lock current usage");
+        let request_weight: i32;
         if new_weight < old_weight {
+            request_weight = new_weight;
             println!("{} - {}", *self.prev_key.lock().expect("Lock prev_key"), new_weight);
         } else {
+            request_weight = new_weight - old_weight;
             println!(
                 "{} - {}",
                 *self.prev_key.lock().expect("Lock prev_key"),
@@ -111,7 +114,7 @@ impl CustomLogHandler {
         // Update Redis and the current usage
         let mut con = self.db_client.lock().expect("Lock db_client");
         let key = self.prev_key.lock().expect("Lock prev_key").clone();
-        let _: Result<(), _> = con.set(&key, new_weight);
+        let _: Result<(), _> = con.set(&key, request_weight);
 
         *current_usage.lock().expect("Lock current usage") = new_weight;
     }
