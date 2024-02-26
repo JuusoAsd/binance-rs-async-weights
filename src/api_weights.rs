@@ -115,6 +115,7 @@ impl CustomLogHandler {
         let mut con = self.db_client.lock().expect("Lock db_client");
         let key = self.prev_key.lock().expect("Lock prev_key").clone();
         let _: Result<(), _> = con.set(&key, request_weight);
+        println!("item: {}, weight: {}", key, request_weight);
 
         *current_usage.lock().expect("Lock current usage") = new_weight;
     }
