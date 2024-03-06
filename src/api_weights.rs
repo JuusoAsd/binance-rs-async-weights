@@ -200,7 +200,7 @@ impl CustomLogHandlerFile {
         }
 
         let key = self.prev_key.lock().expect("Lock prev_key").clone();
-        let log_entry = format!("{}: {}\n", key, request_weight);
+        let log_entry = format!("{},{}\n", key, request_weight);
         // Update Redis and the current usage
         let mut file = OpenOptions::new()
             .create(true)
